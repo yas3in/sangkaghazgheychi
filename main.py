@@ -10,6 +10,7 @@ import sqlite3
 from db import insert_valeus
 from db import login_select
 
+
 def first_text():
     print(text)
     member_choice = input("Enter your choice? ").lower()
@@ -21,10 +22,6 @@ def first_text():
     elif member_choice == "s":
         sign_up()
 
-# print("---- Hello Wllcome to ----\n")
-# print("--- Sang Kaghaz Gheychi ---\n")
-
-#this input for command player
 
 def help():
     print(help_text)
@@ -80,7 +77,6 @@ def play():
         
     }
 
-    
     for i in range(count):
         
         player = player_choice()
@@ -97,7 +93,6 @@ def play():
         elif BOTMOHRE == 'q' and player == 'q':
             score_bord["draw"] += 1
             print(score_bord)
-   
    
    
         elif BOTMOHRE == 's' and player == 'q':
@@ -167,6 +162,7 @@ def login():
     global password
     password = input("Enter password ")
     loging = login_select(username, password)
+    
     if loging:
         print(f"Welcome {username}\n")
         play()
@@ -174,3 +170,4 @@ def login():
         
 if __name__ == "__main__":
     first_text()
+    
