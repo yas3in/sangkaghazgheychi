@@ -1,14 +1,16 @@
 import random
 
-from config import MOHRE
+from tools.config import MOHRE
+from tools.config import FIRST_COIN
 
-from text import text
-from text import help_text
+from tools import text
+from tools import help_text
 
 import sqlite3
 
-from db import insert_valeus
-from db import login_select
+from tools.db import insert_valeus
+from tools.db import login_select
+from tools.db import coins
 
 
 def first_text():
@@ -40,18 +42,27 @@ def player_choice():
 # choice whait is winner in the game
 def choice_winner():
     global score_bord
+    global user_coin
+    user_coin = FIRST_COIN
     
+    # add coin dont remember
     if score_bord["bot"] > score_bord[player_name]:
+        user_coin -= 1
+        coins(username=username, user_coin=user_coin)
         print("\n---- Bot IIS winner ----")
         print("----                ----")
         print(score_bord, '\n')
         
     elif score_bord[player_name] > score_bord["bot"]:
+        user_coin += 1
+        coins(username=username, user_coin=user_coin)
         print(f"\n---- {username} IS Winner ----")
         print("----                ----")
         print(score_bord)
         
     else:
+        user_coin += 0
+        coins(username=username, user_coin=user_coin)
         print("The Game Drawed!\n")
     again_game = input("You wanna Play Again`s Game?(y, n) ")
     
@@ -135,12 +146,13 @@ def sign_up():
     global username
     global password
     global email
+    global user_coin
     
     username = input("enter your username: ")
     password = input("enter your password: ")
     email = input("enter your email: ")
-    
-    tup = (username, password, email)
+
+    tup = (username, password, email, FIRST_COIN)
 
     try:
         insert_valeus(tup)
