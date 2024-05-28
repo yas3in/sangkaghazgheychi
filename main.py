@@ -11,6 +11,7 @@ import sqlite3
 from tools.db import insert_valeus
 from tools.db import login_select
 from tools.db import coins
+from tools.db import coin_from_db
 
 
 def first_text():
@@ -43,7 +44,9 @@ def player_choice():
 def choice_winner():
     global score_bord
     global user_coin
-    user_coin = FIRST_COIN
+    global username
+    
+    user_coin = coin_from_db(username)
     
     # add coin dont remember
     if score_bord["bot"] > score_bord[player_name]:
@@ -146,7 +149,6 @@ def sign_up():
     global username
     global password
     global email
-    global user_coin
     
     username = input("enter your username: ")
     password = input("enter your password: ")
@@ -178,6 +180,9 @@ def login():
     if loging:
         print(f"Welcome {username}\n")
         play()
+    else:
+        print("you are not login")
+        return login
         
         
 if __name__ == "__main__":

@@ -42,7 +42,7 @@ def login_select(username, password):
             return True
 
    
-    print(users_list)
+    # print(users_list)
 
     
     db.commit()
@@ -63,6 +63,7 @@ def coin_column():
 def coins(username, user_coin):
     db = sqlite3.connect("database.db")
     cur = db.cursor()  
+
     cur.execute(F"UPDATE users SET coin = {user_coin} WHERE username = {username}")
     db.commit()
     db.close()
@@ -74,3 +75,15 @@ def delete_all_record():
     cur.execute("DELETE FROM users")
     db.commit()
     db.close()
+    
+
+def coin_from_db(username):
+    user_coin = 0
+    db = sqlite3.connect("database.db")
+    cur = db.cursor() 
+    coindb = cur.execute( f" SELECT coin FROM users WHERE username = {username} ")
+    for i in coindb:
+        user_coin = i[0]
+    db.commit()
+    db.close()
+    return int(user_coin)
