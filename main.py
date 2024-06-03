@@ -14,6 +14,8 @@ from tools.db import coins
 from tools.db import coin_from_db
 
 
+import time
+
 def first_text():
     print(text)
     member_choice = input("Enter your choice? ").lower()
@@ -52,15 +54,17 @@ def choice_winner():
     if score_bord["bot"] > score_bord[player_name]:
         user_coin -= 1
         coins(username=username, user_coin=user_coin)
-        print("\n---- Bot IIS winner ----")
-        print("----                ----")
+        print("--------------------------")
+        print("-      Bot IIS winner    -")
+        print("--------------------------")
         print(score_bord, '\n')
         
     elif score_bord[player_name] > score_bord["bot"]:
         user_coin += 1
         coins(username=username, user_coin=user_coin)
-        print(f"\n---- {username} IS Winner ----")
-        print("----                ----")
+        print("----------------------------")
+        print(f"-    {username} IS Winner    -")
+        print("----------------------------")
         print(score_bord)
         
     else:
@@ -176,14 +180,21 @@ def login():
     global password
     password = input("Enter password ")
     loging = login_select(username, password)
+    coin = coin_from_db(username)
     
     if loging:
-        print(f"Welcome {username}\n")
+        print("Loading...")
+        time.sleep(3)
+        print("-----------------------------------------------")
+        print(f"Name : {username} coin : {coin}")
         play()
     else:
         print("you are not login")
         return login
         
+        
+def show_coin():
+    pass
         
 if __name__ == "__main__":
     first_text()
