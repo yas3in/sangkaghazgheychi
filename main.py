@@ -193,7 +193,7 @@ def login():
         return login
         
         
-def show_coin():
+def show_profile():
     pass
         
 if __name__ == "__main__":
