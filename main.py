@@ -186,8 +186,13 @@ def login():
         print("Loading...")
         time.sleep(3)
         print("-----------------------------------------------")
-        print(f"Name : {username} coin : {coin}")
-        play()
+        print(f"Welcome {username}")
+        profile = input("choise your")
+        if coin == 0:
+            print("you cant play game because you need coin")
+            sell_coin()
+        else: 
+            play()
     else:
         print("you are not login")
         return login
@@ -195,6 +200,11 @@ def login():
         
 def show_profile():
     pass
+
+
+def sell_coin():
+    pass
+
         
 if __name__ == "__main__":
     first_text()
